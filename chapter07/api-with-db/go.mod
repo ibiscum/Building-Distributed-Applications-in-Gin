@@ -11,5 +11,5 @@ require (
 	github.com/onsi/gomega v1.10.4 // indirect
 	github.com/stretchr/testify v1.9.0
 	go.mongodb.org/mongo-driver v1.16.0
-	golang.org/x/net v0.25.0
+	golang.org/x/net v0.27.0
 )

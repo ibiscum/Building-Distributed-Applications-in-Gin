@@ -12,6 +12,6 @@ require (
 	github.com/onsi/gomega v1.10.4 // indirect
 	github.com/rs/xid v1.2.1
 	go.mongodb.org/mongo-driver v1.16.0
-	golang.org/x/net v0.25.0
+	golang.org/x/net v0.27.0
 	gopkg.in/check.v1 v1.0.0-20180628173108-788fd7840127 // indirect
 )

@@ -10,5 +10,5 @@ require (
 	github.com/onsi/ginkgo v1.14.2 // indirect
 	github.com/onsi/gomega v1.10.4 // indirect
 	go.mongodb.org/mongo-driver v1.16.0
-	golang.org/x/net v0.25.0
+	golang.org/x/net v0.27.0
 )
