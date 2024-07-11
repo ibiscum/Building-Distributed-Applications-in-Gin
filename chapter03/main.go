@@ -2,17 +2,18 @@
 //
 // This is a sample recipes API. You can find out more about the API at https://github.com/PacktPublishing/Building-Distributed-Applications-in-Gin.
 //
-//	Schemes: http
-//  Host: localhost:8080
-//	BasePath: /
-//	Version: 1.0.0
-//	Contact: Mohamed Labouardy <mohamed@labouardy.com> https://labouardy.com
+//		Schemes: http
+//	 Host: localhost:8080
+//		BasePath: /
+//		Version: 1.0.0
+//		Contact: Mohamed Labouardy <mohamed@labouardy.com> https://labouardy.com
 //
-//	Consumes:
-//	- application/json
+//		Consumes:
+//		- application/json
 //
-//	Produces:
-//	- application/json
+//		Produces:
+//		- application/json
+//
 // swagger:meta
 package main
 
@@ -55,6 +56,9 @@ func init() {
 	log.Println("Inserted recipes: ", len(insertManyResult.InsertedIDs))*/
 	ctx := context.Background()
 	client, err := mongo.Connect(ctx, options.Client().ApplyURI(os.Getenv("MONGO_URI")))
+	if err != nil {
+		log.Fatal(err)
+	}
 	if err = client.Ping(context.TODO(), readpref.Primary()); err != nil {
 		log.Fatal(err)
 	}
@@ -80,7 +84,9 @@ func main() {
 	router.PUT("/recipes/:id", recipesHandler.UpdateRecipeHandler)
 	router.DELETE("/recipes/:id", recipesHandler.DeleteRecipeHandler)
 	router.GET("/recipes/:id", recipesHandler.GetOneRecipeHandler)
-	/*
-		router.GET("/recipes/search", SearchRecipesHandler)*/
-	router.Run()
+	// router.GET("/recipes/search", SearchRecipesHandler)
+	err := router.Run(":8001")
+	if err != nil {
+		log.Fatal(err)
+	}
 }
