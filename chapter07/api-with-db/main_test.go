@@ -9,7 +9,7 @@ import (
 	"net/http/httptest"
 	"testing"
 
-	"github.com/mlabouardy/recipes-api/models"
+	"github.com/ibiscum/Building-Distributed-Applications-in-Gin/chapter07/api-with-db/models"
 	"github.com/stretchr/testify/assert"
 )
 

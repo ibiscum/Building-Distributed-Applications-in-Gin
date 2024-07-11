@@ -4,4 +4,9 @@ use (
 	./chapter01
 	./chapter02
 	./chapter03
+	./chapter04/api
+	./chapter04/auth0
+	./chapter04/cookies
+	./chapter04/users
+    ./chapter05/api
 )

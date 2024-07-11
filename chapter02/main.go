@@ -2,24 +2,26 @@
 //
 // This is a sample recipes API. You can find out more about the API at https://github.com/PacktPublishing/Building-Distributed-Applications-in-Gin.
 //
-//	Schemes: http
-//  Host: localhost:8080
-//	BasePath: /
-//	Version: 1.0.0
-//	Contact: Mohamed Labouardy <mohamed@labouardy.com> https://labouardy.com
+// Schemes: http
+// Host: localhost:8080
+// BasePath: /
+// Version: 1.0.0
+// Contact: Mohamed Labouardy <mohamed@labouardy.com> https://labouardy.com
 //
-//	Consumes:
-//	- application/json
+// Consumes:
+// - application/json
 //
-//	Produces:
-//	- application/json
+// Produces:
+// - application/json
+//
 // swagger:meta
 package main
 
 import (
 	"encoding/json"
-	"io/ioutil"
+	"log"
 	"net/http"
+	"os"
 	"strings"
 	"time"
 
@@ -46,8 +48,9 @@ type Recipe struct {
 // produces:
 // - application/json
 // responses:
-//     '200':
-//         description: Successful operation
+//
+//	'200':
+//	    description: Successful operation
 func ListRecipesHandler(c *gin.Context) {
 	c.JSON(http.StatusOK, recipes)
 }
@@ -58,10 +61,11 @@ func ListRecipesHandler(c *gin.Context) {
 // produces:
 // - application/json
 // responses:
-//     '200':
-//         description: Successful operation
-//     '400':
-//         description: Invalid input
+//
+//	'200':
+//	    description: Successful operation
+//	'400':
+//	    description: Invalid input
 func NewRecipeHandler(c *gin.Context) {
 	var recipe Recipe
 	if err := c.ShouldBindJSON(&recipe); err != nil {
@@ -81,20 +85,22 @@ func NewRecipeHandler(c *gin.Context) {
 // Update an existing recipe
 // ---
 // parameters:
-// - name: id
-//   in: path
-//   description: ID of the recipe
-//   required: true
-//   type: string
+//   - name: id
+//     in: path
+//     description: ID of the recipe
+//     required: true
+//     type: string
+//
 // produces:
 // - application/json
 // responses:
-//     '200':
-//         description: Successful operation
-//     '400':
-//         description: Invalid input
-//     '404':
-//         description: Invalid recipe ID
+//
+//	'200':
+//	    description: Successful operation
+//	'400':
+//	    description: Invalid input
+//	'404':
+//	    description: Invalid recipe ID
 func UpdateRecipeHandler(c *gin.Context) {
 	id := c.Param("id")
 	var recipe Recipe
@@ -106,7 +112,7 @@ func UpdateRecipeHandler(c *gin.Context) {
 	index := -1
 	for i := 0; i < len(recipes); i++ {
 		if recipes[i].ID == id {
-			index = i 
+			index = i
 			break
 		}
 	}
@@ -132,11 +138,13 @@ func UpdateRecipeHandler(c *gin.Context) {
 //     description: ID of the recipe
 //     required: true
 //     type: string
+//
 // responses:
-//     '200':
-//         description: Successful operation
-//     '404':
-//         description: Invalid recipe ID
+//
+//	'200':
+//	    description: Successful operation
+//	'404':
+//	    description: Invalid recipe ID
 func DeleteRecipeHandler(c *gin.Context) {
 	id := c.Param("id")
 
@@ -169,9 +177,11 @@ func DeleteRecipeHandler(c *gin.Context) {
 //     description: recipe tag
 //     required: true
 //     type: string
+//
 // responses:
-//     '200':
-//         description: Successful operation
+//
+//	'200':
+//	    description: Successful operation
 func SearchRecipesHandler(c *gin.Context) {
 	tag := c.Query("tag")
 	listOfRecipes := make([]Recipe, 0)
@@ -202,11 +212,13 @@ func SearchRecipesHandler(c *gin.Context) {
 //     description: ID of the recipe
 //     required: true
 //     type: string
+//
 // responses:
-//     '200':
-//         description: Successful operation
-//     '404':
-//         description: Invalid recipe ID
+//
+//	'200':
+//	    description: Successful operation
+//	'404':
+//	    description: Invalid recipe ID
 func GetRecipeHandler(c *gin.Context) {
 	id := c.Param("id")
 	for i := 0; i < len(recipes); i++ {
@@ -221,7 +233,7 @@ func GetRecipeHandler(c *gin.Context) {
 
 func init() {
 	recipes = make([]Recipe, 0)
-	file, _ := ioutil.ReadFile("recipes.json")
+	file, _ := os.ReadFile("recipes.json")
 	_ = json.Unmarshal([]byte(file), &recipes)
 }
 
@@ -232,5 +244,8 @@ func main() {
 	router.PUT("/recipes/:id", UpdateRecipeHandler)
 	router.DELETE("/recipes/:id", DeleteRecipeHandler)
 	router.GET("/recipes/:id", GetRecipeHandler)
-	router.Run()
+	err := router.Run(":8001")
+	if err != nil {
+		log.Fatal(err)
+	}
 }

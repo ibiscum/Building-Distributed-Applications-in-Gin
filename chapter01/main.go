@@ -1,6 +1,7 @@
 package main
 
 import (
+	"log"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
@@ -15,5 +16,8 @@ func IndexHandler(c *gin.Context) {
 func main() {
 	router := gin.Default()
 	router.GET("/", IndexHandler)
-	http.ListenAndServe(":8001", router)
+	err := http.ListenAndServe(":8001", router)
+	if err != nil {
+		log.Fatal(err)
+	}
 }

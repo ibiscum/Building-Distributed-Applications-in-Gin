@@ -8,7 +8,7 @@ import (
 	"github.com/dgrijalva/jwt-go"
 	"github.com/gin-contrib/sessions"
 	"github.com/gin-gonic/gin"
-	"github.com/mlabouardy/recipes-api/models"
+	"github.com/ibiscum/Building-Distributed-Applications-in-Gin/chapter04/cookies/models"
 	"github.com/rs/xid"
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/mongo"
@@ -43,10 +43,11 @@ func NewAuthHandler(ctx context.Context, collection *mongo.Collection) *AuthHand
 // produces:
 // - application/json
 // responses:
-//     '200':
-//         description: Successful operation
-//     '401':
-//         description: Invalid credentials
+//
+//	'200':
+//	    description: Successful operation
+//	'401':
+//	    description: Invalid credentials
 func (handler *AuthHandler) SignInHandler(c *gin.Context) {
 	var user models.User
 	if err := c.ShouldBindJSON(&user); err != nil {
@@ -80,10 +81,11 @@ func (handler *AuthHandler) SignInHandler(c *gin.Context) {
 // produces:
 // - application/json
 // responses:
-//     '200':
-//         description: Successful operation
-//     '401':
-//         description: Invalid credentials
+//
+//	'200':
+//	    description: Successful operation
+//	'401':
+//	    description: Invalid credentials
 func (handler *AuthHandler) RefreshHandler(c *gin.Context) {
 	session := sessions.Default(c)
 	sessionToken := session.Get("token")
@@ -105,8 +107,9 @@ func (handler *AuthHandler) RefreshHandler(c *gin.Context) {
 // Signing out
 // ---
 // responses:
-//     '200':
-//         description: Successful operation
+//
+//	'200':
+//	    description: Successful operation
 func (handler *AuthHandler) SignOutHandler(c *gin.Context) {
 	session := sessions.Default(c)
 	session.Clear()

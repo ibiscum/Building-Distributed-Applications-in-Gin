@@ -2,22 +2,23 @@
 //
 // This is a sample recipes API. You can find out more about the API at https://github.com/PacktPublishing/Building-Distributed-Applications-in-Gin.
 //
-//	Schemes: http
-//  Host: api.recipes.io:8080
-//	BasePath: /
-//	Version: 1.0.0
-//	Contact: Mohamed Labouardy <mohamed@labouardy.com> https://labouardy.com
-//  SecurityDefinitions:
-//  api_key:
-//    type: apiKey
-//    name: Authorization
-//    in: header
+//		Schemes: http
+//	 Host: api.recipes.io:8080
+//		BasePath: /
+//		Version: 1.0.0
+//		Contact: Mohamed Labouardy <mohamed@labouardy.com> https://labouardy.com
+//	 SecurityDefinitions:
+//	 api_key:
+//	   type: apiKey
+//	   name: Authorization
+//	   in: header
 //
-//	Consumes:
-//	- application/json
+//		Consumes:
+//		- application/json
 //
-//	Produces:
-//	- application/json
+//		Produces:
+//		- application/json
+//
 // swagger:meta
 package main
 
@@ -30,7 +31,7 @@ import (
 	redisStore "github.com/gin-contrib/sessions/redis"
 	"github.com/gin-gonic/gin"
 	"github.com/go-redis/redis"
-	handlers "github.com/mlabouardy/recipes-api/handlers"
+	handlers "github.com/ibiscum/Building-Distributed-Applications-in-Gin/chapter04/cookies/handlers"
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
 	"go.mongodb.org/mongo-driver/mongo/readpref"
