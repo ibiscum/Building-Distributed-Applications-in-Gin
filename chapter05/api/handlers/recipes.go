@@ -8,7 +8,7 @@ import (
 
 	"github.com/gin-gonic/gin"
 	"github.com/go-redis/redis"
-	"github.com/mlabouardy/recipes-api/models"
+	"github.com/ibiscum/Building-Distributed-Applications-in-Gin/chapter05/api/models"
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/bson/primitive"
 	"go.mongodb.org/mongo-driver/mongo"
@@ -35,8 +35,9 @@ func NewRecipesHandler(ctx context.Context, collection *mongo.Collection, redisC
 // produces:
 // - application/json
 // responses:
-//     '200':
-//         description: Successful operation
+//
+//	'200':
+//	    description: Successful operation
 func (handler *RecipesHandler) ListRecipesHandler(c *gin.Context) {
 	val, err := handler.redisClient.Get("recipes").Result()
 	if err == redis.Nil {
@@ -75,10 +76,11 @@ func (handler *RecipesHandler) ListRecipesHandler(c *gin.Context) {
 // produces:
 // - application/json
 // responses:
-//     '200':
-//         description: Successful operation
-//     '400':
-//         description: Invalid input
+//
+//	'200':
+//	    description: Successful operation
+//	'400':
+//	    description: Invalid input
 func (handler *RecipesHandler) NewRecipeHandler(c *gin.Context) {
 	var recipe models.Recipe
 	if err := c.ShouldBindJSON(&recipe); err != nil {
@@ -104,20 +106,22 @@ func (handler *RecipesHandler) NewRecipeHandler(c *gin.Context) {
 // Update an existing recipe
 // ---
 // parameters:
-// - name: id
-//   in: path
-//   description: ID of the recipe
-//   required: true
-//   type: string
+//   - name: id
+//     in: path
+//     description: ID of the recipe
+//     required: true
+//     type: string
+//
 // produces:
 // - application/json
 // responses:
-//     '200':
-//         description: Successful operation
-//     '400':
-//         description: Invalid input
-//     '404':
-//         description: Invalid recipe ID
+//
+//	'200':
+//	    description: Successful operation
+//	'400':
+//	    description: Invalid input
+//	'404':
+//	    description: Invalid recipe ID
 func (handler *RecipesHandler) UpdateRecipeHandler(c *gin.Context) {
 	id := c.Param("id")
 	var recipe models.Recipe
@@ -129,11 +133,11 @@ func (handler *RecipesHandler) UpdateRecipeHandler(c *gin.Context) {
 	objectId, _ := primitive.ObjectIDFromHex(id)
 	_, err := handler.collection.UpdateOne(handler.ctx, bson.M{
 		"_id": objectId,
-	}, bson.D{{"$set", bson.D{
-		{"name", recipe.Name},
-		{"instructions", recipe.Instructions},
-		{"ingredients", recipe.Ingredients},
-		{"tags", recipe.Tags},
+	}, bson.D{{Key: "$set", Value: bson.D{
+		{Key: "name", Value: recipe.Name},
+		{Key: "instructions", Value: recipe.Instructions},
+		{Key: "ingredients", Value: recipe.Ingredients},
+		{Key: "tags", Value: recipe.Tags},
 	}}})
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
@@ -154,11 +158,13 @@ func (handler *RecipesHandler) UpdateRecipeHandler(c *gin.Context) {
 //     description: ID of the recipe
 //     required: true
 //     type: string
+//
 // responses:
-//     '200':
-//         description: Successful operation
-//     '404':
-//         description: Invalid recipe ID
+//
+//	'200':
+//	    description: Successful operation
+//	'404':
+//	    description: Invalid recipe ID
 func (handler *RecipesHandler) DeleteRecipeHandler(c *gin.Context) {
 	id := c.Param("id")
 	objectId, _ := primitive.ObjectIDFromHex(id)
@@ -183,9 +189,11 @@ func (handler *RecipesHandler) DeleteRecipeHandler(c *gin.Context) {
 //     description: recipe ID
 //     required: true
 //     type: string
+//
 // responses:
-//     '200':
-//         description: Successful operation
+//
+//	'200':
+//	    description: Successful operation
 func (handler *RecipesHandler) GetOneRecipeHandler(c *gin.Context) {
 	id := c.Param("id")
 	objectId, _ := primitive.ObjectIDFromHex(id)
