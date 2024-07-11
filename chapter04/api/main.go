@@ -23,7 +23,7 @@ import (
 
 	"github.com/gin-gonic/gin"
 	"github.com/go-redis/redis"
-	handlers "github.com/mlabouardy/recipes-api/handlers"
+	handlers "github.com/ibiscum/Building-Distributed-Applications-in-Gin/chapter04/api/handlers"
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
 	"go.mongodb.org/mongo-driver/mongo/readpref"

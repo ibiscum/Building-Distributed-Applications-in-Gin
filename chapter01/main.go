@@ -15,5 +15,5 @@ func IndexHandler(c *gin.Context) {
 func main() {
 	router := gin.Default()
 	router.GET("/", IndexHandler)
-	http.ListenAndServe(":8080", router)
+	http.ListenAndServe(":8001", router)
 }
