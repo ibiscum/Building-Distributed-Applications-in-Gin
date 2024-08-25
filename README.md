@@ -1,6 +1,3 @@
-
-
-
 # Building Distributed Applications in Gin
 
 <a href="https://www.packtpub.com/web-development/building-distributed-applications-in-gin?utm_source=github&utm_medium=repository&utm_campaign=9781786461629"><img src="https://www.packtpub.com/media/catalog/product/cache/4cdce5a811acc0d2926d7f857dceb83b/9/7/9781801074858-original_53.jpeg" alt="Useful Links" height="256px" align="right"></a>

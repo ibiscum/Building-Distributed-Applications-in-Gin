@@ -19,6 +19,11 @@
     },
     "version": "1.0.0"
   },
+  "tags":[
+    {
+      "name": "recipes"
+    }
+  ],
   "host": "localhost:8001",
   "basePath": "/",
   "paths": {

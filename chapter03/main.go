@@ -2,17 +2,17 @@
 //
 // This is a sample recipes API. You can find out more about the API at https://github.com/PacktPublishing/Building-Distributed-Applications-in-Gin.
 //
-//		Schemes: http
-//	 Host: localhost:8080
-//		BasePath: /
-//		Version: 1.0.0
-//		Contact: Mohamed Labouardy <mohamed@labouardy.com> https://labouardy.com
+// Schemes: http
+// Host: localhost:8080
+// BasePath: /
+// Version: 1.0.0
+// Contact: Mohamed Labouardy <mohamed@labouardy.com> https://labouardy.com
 //
-//		Consumes:
-//		- application/json
+// Consumes:
+//   - application/json
 //
-//		Produces:
-//		- application/json
+// Produces:
+//   - application/json
 //
 // swagger:meta
 package main
