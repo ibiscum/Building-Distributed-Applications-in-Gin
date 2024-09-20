@@ -19,12 +19,14 @@ package main
 
 import (
 	"context"
+	"encoding/json"
 	"log"
 	"os"
 
 	"github.com/gin-gonic/gin"
 	"github.com/go-redis/redis"
 	handlers "github.com/ibiscum/Building-Distributed-Applications-in-Gin/chapter03/handlers"
+	models "github.com/ibiscum/Building-Distributed-Applications-in-Gin/chapter03/models"
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
 	"go.mongodb.org/mongo-driver/mongo/readpref"
@@ -33,12 +35,12 @@ import (
 var recipesHandler *handlers.RecipesHandler
 
 func init() {
-	/*recipes = make([]Recipe, 0)
-	file, _ := ioutil.ReadFile("recipes.json")
+	recipes := make([]models.Recipe, 0)
+	file, _ := os.ReadFile("recipes.json")
 	_ = json.Unmarshal([]byte(file), &recipes)
 
-	ctx = context.Background()
-	client, err = mongo.Connect(ctx, options.Client().ApplyURI(os.Getenv("MONGO_URI")))
+	ctx := context.Background()
+	client, err := mongo.Connect(ctx, options.Client().ApplyURI(os.Getenv("MONGO_URI")))
 	if err = client.Ping(context.TODO(), readpref.Primary()); err != nil {
 		log.Fatal(err)
 	}
@@ -48,14 +50,16 @@ func init() {
 	for _, recipe := range recipes {
 		listOfRecipes = append(listOfRecipes, recipe)
 	}
+
 	collection := client.Database(os.Getenv("MONGO_DATABASE")).Collection("recipes")
 	insertManyResult, err := collection.InsertMany(ctx, listOfRecipes)
 	if err != nil {
 		log.Fatal(err)
 	}
-	log.Println("Inserted recipes: ", len(insertManyResult.InsertedIDs))*/
-	ctx := context.Background()
-	client, err := mongo.Connect(ctx, options.Client().ApplyURI(os.Getenv("MONGO_URI")))
+
+	log.Println("Inserted recipes: ", len(insertManyResult.InsertedIDs))
+	ctx = context.Background()
+	client, err = mongo.Connect(ctx, options.Client().ApplyURI(os.Getenv("MONGO_URI")))
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -63,7 +67,7 @@ func init() {
 		log.Fatal(err)
 	}
 	log.Println("Connected to MongoDB")
-	collection := client.Database(os.Getenv("MONGO_DATABASE")).Collection("recipes")
+	collection = client.Database(os.Getenv("MONGO_DATABASE")).Collection("recipes")
 
 	redisClient := redis.NewClient(&redis.Options{
 		Addr:     "localhost:6379",

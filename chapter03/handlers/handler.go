@@ -4,11 +4,13 @@ import (
 	"encoding/json"
 	"log"
 	"net/http"
+	"strings"
 	"time"
 
 	"github.com/gin-gonic/gin"
 	"github.com/go-redis/redis"
-	"github.com/ibiscum/Building-Distributed-Applications-in-Gin/chapter03/models"
+	models "github.com/ibiscum/Building-Distributed-Applications-in-Gin/chapter03/models"
+
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/bson/primitive"
 	"go.mongodb.org/mongo-driver/mongo"
@@ -221,12 +223,14 @@ func (handler *RecipesHandler) GetOneRecipeHandler(c *gin.Context) {
 //     description: recipe tag
 //     required: true
 //     type: string
+//
 // responses:
-//     '200':
-//         description: Successful operation
-/*func SearchRecipesHandler(c *gin.Context) {
+//
+//	'200':
+//	    description: Successful operation
+func SearchRecipesHandler(c *gin.Context) {
 	tag := c.Query("tag")
-	listOfRecipes := make([]Recipe, 0)
+	listOfRecipes := make([]models.Recipe, 0)
 
 	for i := 0; i < len(recipes); i++ {
 		found := false
@@ -241,4 +245,4 @@ func (handler *RecipesHandler) GetOneRecipeHandler(c *gin.Context) {
 	}
 
 	c.JSON(http.StatusOK, listOfRecipes)
-}*/
+}
