@@ -4,7 +4,7 @@ import (
 	"net/http"
 	"os"
 
-	"github.com/auth0-community/go-auth0"
+	auth0 "github.com/auth0-community/go-auth0"
 	"github.com/gin-gonic/gin"
 	"go.mongodb.org/mongo-driver/mongo"
 	"golang.org/x/net/context"

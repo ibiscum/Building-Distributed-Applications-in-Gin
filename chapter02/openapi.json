@@ -1,9 +1,6 @@
 {
-    "basePath": "/",
-    "consumes": [
-        "application/json"
-    ],
-    "host": "localhost:8001",
+    "components": {
+    },
     "info": {
         "contact": {
             "email": "mohamed@labouardy.com",
@@ -14,16 +11,16 @@
         "title": "Recipes API",
         "version": "1.0.0"
     },
+    "openapi": "3.0.1",
     "paths": {
         "/recipes": {
             "get": {
                 "description": "Returns list of recipes",
                 "operationId": "listRecipes",
-                "produces": [
-                    "application/json"
-                ],
                 "responses": {
                     "200": {
+                        "content": {
+                        },
                         "description": "Successful operation"
                     }
                 },
@@ -38,52 +35,74 @@
                     {
                         "in": "query",
                         "name": "name",
-                        "type": "string",
+                        "schema": {
+                            "type": "string",
+                            "x-go-name": "Name"
+                        },
                         "x-go-name": "Name"
                     },
                     {
+                        "explode": false,
                         "in": "query",
-                        "items": {
-                            "type": "string"
-                        },
                         "name": "tags",
-                        "type": "array",
+                        "schema": {
+                            "items": {
+                                "type": "string"
+                            },
+                            "type": "array",
+                            "x-go-name": "Tags"
+                        },
+                        "style": "form",
                         "x-go-name": "Tags"
                     },
                     {
+                        "explode": false,
                         "in": "query",
-                        "items": {
-                            "type": "string"
-                        },
                         "name": "ingredients",
-                        "type": "array",
+                        "schema": {
+                            "items": {
+                                "type": "string"
+                            },
+                            "type": "array",
+                            "x-go-name": "Ingredients"
+                        },
+                        "style": "form",
                         "x-go-name": "Ingredients"
                     },
                     {
+                        "explode": false,
                         "in": "query",
-                        "items": {
-                            "type": "string"
-                        },
                         "name": "instructions",
-                        "type": "array",
+                        "schema": {
+                            "items": {
+                                "type": "string"
+                            },
+                            "type": "array",
+                            "x-go-name": "Instructions"
+                        },
+                        "style": "form",
                         "x-go-name": "Instructions"
                     },
                     {
-                        "format": "date-time",
                         "in": "query",
                         "name": "publishedAt",
-                        "type": "string",
+                        "schema": {
+                            "format": "date-time",
+                            "type": "string",
+                            "x-go-name": "PublishedAt"
+                        },
                         "x-go-name": "PublishedAt"
                     }
                 ],
-                "produces": [
-                    "application/json"
-                ],
                 "responses": {
                     "200": {
+                        "content": {
+                        },
                         "description": "Successful operation"
                     },
                     "400": {
+                        "content": {
+                        },
                         "description": "Invalid input"
                     }
                 },
@@ -102,17 +121,20 @@
                         "in": "path",
                         "name": "id",
                         "required": true,
-                        "type": "string"
+                        "schema": {
+                            "type": "string"
+                        }
                     }
-                ],
-                "produces": [
-                    "application/json"
                 ],
                 "responses": {
                     "200": {
+                        "content": {
+                        },
                         "description": "Successful operation"
                     },
                     "404": {
+                        "content": {
+                        },
                         "description": "Invalid recipe ID"
                     }
                 },
@@ -129,17 +151,20 @@
                         "in": "path",
                         "name": "id",
                         "required": true,
-                        "type": "string"
+                        "schema": {
+                            "type": "string"
+                        }
                     }
-                ],
-                "produces": [
-                    "application/json"
                 ],
                 "responses": {
                     "200": {
+                        "content": {
+                        },
                         "description": "Successful operation"
                     },
                     "404": {
+                        "content": {
+                        },
                         "description": "Invalid recipe ID"
                     }
                 },
@@ -156,20 +181,25 @@
                         "in": "path",
                         "name": "id",
                         "required": true,
-                        "type": "string"
+                        "schema": {
+                            "type": "string"
+                        }
                     }
-                ],
-                "produces": [
-                    "application/json"
                 ],
                 "responses": {
                     "200": {
+                        "content": {
+                        },
                         "description": "Successful operation"
                     },
                     "400": {
+                        "content": {
+                        },
                         "description": "Invalid input"
                     },
                     "404": {
+                        "content": {
+                        },
                         "description": "Invalid recipe ID"
                     }
                 },
@@ -188,14 +218,15 @@
                         "in": "query",
                         "name": "tag",
                         "required": true,
-                        "type": "string"
+                        "schema": {
+                            "type": "string"
+                        }
                     }
-                ],
-                "produces": [
-                    "application/json"
                 ],
                 "responses": {
                     "200": {
+                        "content": {
+                        },
                         "description": "Successful operation"
                     }
                 },
@@ -205,16 +236,15 @@
             }
         }
     },
-    "produces": [
-        "application/json"
+    "servers": [
+        {
+            "url": "http://localhost:8001"
+        }
     ],
-    "schemes": [
-        "http"
-    ],
-    "swagger": "2.0",
     "tags": [
         {
             "name": "recipes"
         }
-    ]
+    ],
+    "x-original-swagger-version": "2.0"
 }
