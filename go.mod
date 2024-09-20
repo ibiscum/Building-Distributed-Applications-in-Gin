@@ -11,7 +11,7 @@ require (
 	github.com/stretchr/testify v1.9.0
 	go.mongodb.org/mongo-driver v1.16.1
 	golang.org/x/net v0.29.0
-	gopkg.in/square/go-jose.v2 v2.1.7
+	gopkg.in/square/go-jose.v2 v2.6.0
 )
 
 require (
