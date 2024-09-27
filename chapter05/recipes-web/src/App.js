@@ -15,7 +15,7 @@ class App extends React.Component {
   }
 
   getRecipes() {
-    fetch('http://localhost:8080/recipes')
+    fetch('/api/recipes')
       .then(response => response.json())
       .then(data => this.setState({ recipes: data }));
   }

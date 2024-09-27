@@ -4,7 +4,6 @@ import (
 	"encoding/json"
 	"log"
 	"net/http"
-	"strings"
 	"time"
 
 	"github.com/gin-gonic/gin"
@@ -228,21 +227,21 @@ func (handler *RecipesHandler) GetOneRecipeHandler(c *gin.Context) {
 //
 //	'200':
 //	    description: Successful operation
-func SearchRecipesHandler(c *gin.Context) {
-	tag := c.Query("tag")
-	listOfRecipes := make([]models.Recipe, 0)
+// func SearchRecipesHandler(c *gin.Context) {
+// 	tag := c.Query("tag")
+// 	listOfRecipes := make([]models.Recipe, 0)
 
-	for i := 0; i < len(recipes); i++ {
-		found := false
-		for _, t := range recipes[i].Tags {
-			if strings.EqualFold(t, tag) {
-				found = true
-			}
-		}
-		if found {
-			listOfRecipes = append(listOfRecipes, recipes[i])
-		}
-	}
+// 	for i := 0; i < len(recipes); i++ {
+// 		found := false
+// 		for _, t := range recipes[i].Tags {
+// 			if strings.EqualFold(t, tag) {
+// 				found = true
+// 			}
+// 		}
+// 		if found {
+// 			listOfRecipes = append(listOfRecipes, recipes[i])
+// 		}
+// 	}
 
-	c.JSON(http.StatusOK, listOfRecipes)
-}
+// 	c.JSON(http.StatusOK, listOfRecipes)
+// }
